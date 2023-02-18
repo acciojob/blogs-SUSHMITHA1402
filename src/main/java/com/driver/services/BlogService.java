@@ -37,17 +37,17 @@ public class BlogService {
         userBlogs.add(blog);
         user.setBlogList(userBlogs);
 
-        blogRepository1.save(blog);
+        userRepository1.save(user);
         return blog;
     }
 
     public void deleteBlog(int blogId){
         //delete blog and corresponding images
         Blog blog = blogRepository1.findById(blogId).get();
-        //List<Image> blogImages = blog.getImageList();
-        //for (Image image:blogImages){
-          //  imageRepository.deleteById(image.getId());
-        //}
+        List<Image> blogImages = blog.getImageList();
+        for (Image image:blogImages){
+            imageRepository.deleteById(image.getId());
+        }
         blogRepository1.deleteById(blogId);
     }
 }
