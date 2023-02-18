@@ -39,7 +39,7 @@ public class ImageService {
         Image image = imageRepository2.findById(id).get();
         Blog blog = image.getBlog();
         List<Image> images = blog.getImageList();
-        images.remove(image);
+        images.remove(images.indexOf(image));
         blog.setImageList(images);
         imageRepository2.deleteById(id);
         blogRepository2.save(blog);
